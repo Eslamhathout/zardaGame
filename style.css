@@ -1,0 +1,32 @@
+#gameBoard{
+	background-color: gray;
+	width:fit;
+	height: 600px;
+
+}
+
+#gameBoard > div{
+	width: 190px;
+	height: 260px;
+	padding: 20px;
+	display: inline-block;
+	position: relative;
+
+}
+.mycard {
+	position:relative;
+	width:240px; height:200px; margin:20px; float:left;
+}
+.mycard > .front {
+	position:absolute;
+	transform: perspective( 1000px ) rotateY( 0deg );
+	backface-visibility: hidden;
+	transition: transform .5s linear 0s;
+}
+
+.mycard > .back {
+	position:absolute;
+	transform: perspective( 1000px ) rotateY( 180deg );
+	backface-visibility: hidden;
+	transition: transform .5s linear 0s;
+}
