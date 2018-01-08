@@ -13,7 +13,7 @@
 	position: relative;
 
 }
-.mycard {
+/*.mycard {
 	position:relative;
 	width:240px; height:200px; margin:20px; float:left;
 }
@@ -29,4 +29,4 @@
 	transform: perspective( 1000px ) rotateY( 180deg );
 	backface-visibility: hidden;
 	transition: transform .5s linear 0s;
-}
+}*/
