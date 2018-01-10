@@ -1,4 +1,4 @@
-Export var go = 120;
+//Export var go = 120;
 var welcomePageDiv = document.getElementById("welcomePage");
 var showWelcomePage = function(){
 	welcomePageDiv.innerHTML += "<img align=\"center\" src=\"Pics/welcomePage.png\">\
@@ -27,7 +27,7 @@ var loading = function(){
 // end of loading bar function
 loading();
 var openGame = function(){
-	window.location.href= "C:/Users/user/Desktop/project/index.html";
+	window.location.href= "index.html";
 }
 setTimeout(hideWelcomePage, 4000);
 
