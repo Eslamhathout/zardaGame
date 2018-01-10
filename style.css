@@ -2,7 +2,7 @@
 	background-color: gray;
 	width:fit;
 	height: 600px;
-
+	text-align: center;
 }
 
 #gameBoard > div{
@@ -11,9 +11,13 @@
 	padding: 20px;
 	display: inline-block;
 	position: relative;
-
+	margin-top: 150px;
 }
-/*.mycard {
+#play{
+	border-radius: 10px;
+	background-color: white;
+}
+.mycard {
 	position:relative;
 	width:240px; height:200px; margin:20px; float:left;
 }
@@ -29,4 +33,4 @@
 	transform: perspective( 1000px ) rotateY( 180deg );
 	backface-visibility: hidden;
 	transition: transform .5s linear 0s;
-}*/
+}
