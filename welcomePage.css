@@ -1,0 +1,50 @@
+#main{
+	position:absolute;
+	width:1000px;
+	height:630px;
+	float:left;
+}
+#main > div{
+	position:absolute;
+	backface-visibility: hidden;
+}
+#welcomePage{
+	width:1000px;
+	height:630px;
+}
+#characterPage{
+	width:1000px;
+	height:630px;
+}
+#mainCharacter{
+	background-color: #34495e;
+	position:absolute;
+	width:1000px;
+	height:630px;
+}
+.left{
+	float: left;
+	margin: 20px;
+}
+.right{
+	float: right;
+	margin: 20px;
+}
+#loadingBar{
+	width:100%;
+	background-color: gray;
+	border-radius: 10px;
+}
+#loader{
+	width:10%;
+	height: 30px;
+	background-color: brown;
+	border-radius: 10px;
+}
+button{
+	border: none;
+	background-color: transparent;
+}
+button:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
