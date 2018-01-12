@@ -1,11 +1,20 @@
 var interval;
 var timer=0;
+var character1=null;
 class Card {
   constructor(check,imgSrc,backImg) {
     this.isQueen = check;
     this.imgSrc = imgSrc;
     this.imgSrcBack = backImg;
   }
+}
+
+class character{
+	constructor(name,ponus,img){
+		this.characterName=name;
+		this.characterPonus=ponus;
+		this.characterImg=img;
+	}
 }
 
 var card1 = new Card(true, "Pics/ten.png","Pics/cardBack.jpg");
@@ -15,9 +24,10 @@ var card3 = new Card(false, "Pics/ten.png","Pics/cardBack.jpg");
 var cardArr = [card1,card2,card3];
 
 var backgroundDiv = document.getElementById('gameBoard');
-
+var characterDiv = document.getElementById('characterDiv');
 
 var showCards = function(){
+	characterDiv.innerHTML += "<img class=\"charaImg\" width=30px hight=30px src=\"pics/back.png\"> <img class=\"charaImg\" width=30px hight=30px src=\"pics/back.png\">"
 	backgroundDiv.innerHTML += 
 		"<div class = \"mycard\" id = \"card1\">\
 			<div class = \"back\"><img src ="+ cardArr[0].imgSrcBack +">\
