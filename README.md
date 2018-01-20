@@ -36,6 +36,6 @@ You just need to focus on the red card and make correct guesses in all levels. E
 # License
 Zarda game is an open source project made by graduates at the Egyptian Information Technology Institute "ITI" to demonstrate their skills in the JavaScript programming language. You can play, download, share and edit Zarda for commercial and non-commercial purposes.
 
-# Best practise
+# Best practice
 Play Zarda game during drinking the Egyption Zarda tea for better scores.
 ![alt text](https://i.ytimg.com/vi/JZ-3eY9ICv0/maxresdefault.jpg)
