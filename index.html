@@ -2,18 +2,32 @@
 <head>
 	<title>This is Zardaaa!</title>
 	<link rel="stylesheet" href="style.css">
-
+	<link rel="shortcut icon" type="image/png" href="Pics/Queen.png">
 </head>
 <body>
-	<div id="container" >
-	<div id="characterDiv"></div>
-	<div id="gameBoard">
-		
-	</div>
-	</div>
-	<!-- <button id = "startBtn">Start</button> -->
-<!-- 	<script type="text/javascript" src="tagarob.js"></script> -->
 
+
+	<div id="gameBoard">
+		<div class="mycard" id = "card1"></div>
+		<div class="mycard" id = "card2"></div>
+		<div class="mycard" id = "card3"></div>
+
+	</div>
+
+	<div id="messageDiv">
+	    <img id="messageImg" src="" style="height:150px; width:200px; border-radius: 50px;">
+	    </br>
+	    <p id="message"></p>
+	    <h6>press Space to continue</h6>
+  	</div>
+
+	<button id = "startBtn" class="gameBtns" display="inline-block" >Start</button>
+	<button id = "continueBtn" class="gameBtns" display="inline-block">Continue</button>
+	<button id = "continueBtn2" class="gameBtns">Continue</button>
+	<button id = "continueBtn3" class="gameBtns">Continue</button>
+	<button id = "continueBtn4" class="gameBtns">Continue</button>
+	<button id = "restartBtn" class="gameBtns">Restart</button>
+	<p id = "status" display="inline-block">You should foucs on the first card from the left. Press Start button to start</button>
 <script type="text/javascript" src="cardShuffle.js"></script>
 </body>
 </html>
