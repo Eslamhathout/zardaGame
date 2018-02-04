@@ -1,159 +1,1173 @@
 var interval;
 var timer=0;
-var character1=null;
 class Card {
-  constructor(check,imgSrc,backImg) {
+  constructor(check,imgSrc,backImg,div) {
     this.isQueen = check;
     this.imgSrc = imgSrc;
     this.imgSrcBack = backImg;
+    this.div = div
   }
 }
 
-class character{
-	constructor(name,ponus,img){
-		this.characterName=name;
-		this.characterPonus=ponus;
-		this.characterImg=img;
-	}
-}
-
-var card1 = new Card(true, "Pics/ten.png","Pics/cardBack.jpg");
-var card2 = new Card(false, "Pics/queen.png","Pics/cardBack.jpg");
-var card3 = new Card(false, "Pics/ten.png","Pics/cardBack.jpg");
-
-var cardArr = [card1,card2,card3];
 
 var backgroundDiv = document.getElementById('gameBoard');
-var characterDiv = document.getElementById('characterDiv');
+var card1 = new Card(true, "Pics/aceOfHeartRed.jpg","Pics/cardBack.jpg",document.getElementById('card1'));
+var card2 = new Card(false, "Pics/aceOfSpadeRed.jpg","Pics/cardBack.jpg",document.getElementById('card2'));
+var card3 = new Card(false, "Pics/aceOfSpadeRed.jpg","Pics/cardBack.jpg",document.getElementById('card3'));
 
-var showCards = function(){
-	characterDiv.innerHTML += "<img class=\"charaImg\" width=30px hight=30px src=\"pics/back.png\"> <img class=\"charaImg\" width=30px hight=30px src=\"pics/back.png\">"
-	backgroundDiv.innerHTML += 
-		"<div class = \"mycard\" id = \"card1\">\
-			<div class = \"back\"><img src ="+ cardArr[0].imgSrcBack +">\
-			</div>\
-			<div class = \"front\"><img src ="+ cardArr[0].imgSrc +">\
-			</div>\
-		</div>"
+var card1div = document.getElementById("card1");
+var card2div = document.getElementById("card2");
+var card3div = document.getElementById("card3");
 
-	backgroundDiv.innerHTML += 
-		"<div class = \"mycard\" id = \"card2\" >\
-			<div class = \"back\"><img src ="+ cardArr[1].imgSrcBack +">\
-			</div>\
-			<div class = \"front\"><img src ="+ cardArr[1].imgSrc +">\
-			</div>\
-		</div>"
+continueBtn.style.display = "none";
+continueBtn2.style.display = "none";
+continueBtn3.style.display = "none";
+continueBtn4.style.display = "none";
+restartBtn.style.display = "none";
+var showBackCards = function(){
+  card1div.innerHTML =
+"<div class = \"front\"><img src ="+ card1.imgSrc +">\
+  </div>"+  "<div class = \"back\"><img src ="+ card1.imgSrcBack +"></div>";
+card2div.innerHTML =
+  "<div class = \"front\"><img src ="+ card2.imgSrc +">\
+    </div>"+  "<div class = \"back\"><img src ="+ card2.imgSrcBack +"></div>";
 
-	backgroundDiv.innerHTML += 
-		"<div class = \"mycard\" id = \"card3\" >\
-			<div class = \"back\"><img src ="+ cardArr[2].imgSrcBack +">\
-			</div>\
-			<div class = \"front\"><img src ="+ cardArr[2].imgSrc +">\
-			</div>\
-		</div>"
-	backgroundDiv.innerHTML +="<br><div><button id=\"play\"><img  src=\"pics/play.png\"></button></div>"
+card3div.innerHTML =
+  "<div class = \"front\"><img src ="+ card3.imgSrc +">\
+    </div>"+  "<div class = \"back\"><img src ="+ card3.imgSrcBack +"></div>";
+
+//hiding faces
+document.getElementsByClassName('front')[0].style.display='none'
+document.getElementsByClassName('front')[1].style.display='none'
+document.getElementsByClassName('front')[2].style.display='none'
 };
-showCards();
 
-var divCard1 = document.getElementById('card1');
-var divCard2 = document.getElementById('card2');
-var divCard3 = document.getElementById('card3');
-var startBtn = document.getElementById('play');
 
-var mov = function(div1,div2){
+var messageDiv=document.getElementById("messageDiv")
+var Message=document.getElementById("message")
+var messageImg=document.getElementById("messageImg")
+var show=false
+function ShowMessage (imgSrc,textMes) {
+  if(!show){
+  	messageImg.src=imgSrc;
+  	Message.innerHTML=textMes;
+  	backgroundDiv.style.opacity=0.4;
+ 	messageDiv.style.visibility="visible"
+ 	messageDiv.classList.add("messageAnimation")
+    showing=true
+  }
+}
+
+
+// function ShowMessage (imgSrc,textMes) 
+// {
+//   if(!showing)
+//   {messageImg.src=imgSrc;
+//   Message.innerHTML=textMes;
+//   superDiv.style.opacity=0.4;
+//   clearInterval(SetIntervalChar)
+//   clearInterval(SetInterval)
+//   SetInterval=null
+//   SetIntervalChar=null
+//   messageDiv.style.visibility="visible"
+//   messageDiv.classList.add("messageAnimation")
+//   // button1.classList.add("button")
+//   showing=true}
+
+
+function hideMessage (){
+  messageDiv.classList.remove("messageAnimation")
+  backgroundDiv.style.opacity=1;
+  messageDiv.style.visibility="hidden";
+  showing=false
+}
+
+
+var hideCards = function(){
+	document.getElementById('card1').innerHTML ="";
+
+	document.getElementById('card2').innerHTML = "";
+
+	document.getElementById('card3').innerHTML = "";
+}
+var showFrontCards = function(){
+  card1div.innerHTML =
+"<div class = \"front\"><img src ="+ card1.imgSrc +">\
+  </div>"+  "<div class = \"back\"><img src ="+ card1.imgSrcBack +"></div>";
+card2div.innerHTML =
+  "<div class = \"front\"><img src ="+ card2.imgSrc +">\
+    </div>"+  "<div class = \"back\"><img src ="+ card2.imgSrcBack +"></div>";
+
+card3div.innerHTML =
+  "<div class = \"front\"><img src ="+ card3.imgSrc +">\
+    </div>"+  "<div class = \"back\"><img src ="+ card3.imgSrcBack +"></div>";
+
+//hiding faces
+document.getElementsByClassName('back')[0].style.display='none'
+document.getElementsByClassName('back')[1].style.display='none'
+document.getElementsByClassName('back')[2].style.display='none'
+};
+showFrontCards();
+
+
+
+
+
+
+
+
+
+// var divCard1 = document.getElementById('card1');
+// var divCard2 = document.getElementById('card2');
+// var divCard3 = document.getElementById('card3');
+// var startBtn = document.getElementById('startBtn');
+
+
+//The move functions
+var mov = function(cardA,cardB){
 	timer = 0;
 	var margin = 0;
-	if(div1.getBoundingClientRect().right<div2.getBoundingClientRect().right){
-		var tempDiv = div1;
-		div1 = div2;
-		div2 = tempDiv;
+	if(cardA.div.getBoundingClientRect().right<cardB.div.getBoundingClientRect().right){
+		var tempCard = cardA;
+		cardA = cardB;
+		cardB = tempCard;
 	}
+
+
+
+
 	setTimeout(function(){
 		var interval = setInterval(function(){
-			div1.style["top"] = ++margin +"px";
-			div2.style["top"] = -margin +"px";
+			cardA.div.style["top"] = ++margin +"px";
+			cardB.div.style["top"] = -margin +"px";
 
 			if(margin == 150){
 				clearInterval(interval);
 			}
 		},10);
 	},0);
-	timer+=1567;//=======================================================
+	timer+=1567;
+	//=======================================================
 	var marginR =0;
-	var rightDiff = div1.getBoundingClientRect().right-div2.getBoundingClientRect().right;
+	var rightDiff = cardA.div.getBoundingClientRect().right-cardB.div.getBoundingClientRect().right;
 		setTimeout(function(){
 			var interval = setInterval(function(){
 				++marginR;
-				div1.style["right"] = marginR+"px";
-				div2.style["right"] =-marginR+"px";
+				cardA.div.style["right"] = marginR+"px";
+				cardB.div.style["right"] =-marginR+"px";
 				if(marginR == rightDiff){
 					clearInterval(interval);
 				}
 
 			},10)},timer);
-		if(rightDiff == 230){
-			timer+=2400;
+		if(rightDiff <= 240){
+			timer+=2450;
 		}else{
-			timer+=4800;
+			timer+=4850;
+
 		}
 	
 //=======================================================	
 	setTimeout(function(){
 		var interval = setInterval(function(){
-			div1.style["top"] = --margin +"px";
-			div2.style["top"] = -margin +"px";
+			cardA.div.style["top"] = --margin +"px";
+			cardB.div.style["top"] = -margin +"px";
 
 			if(margin <= 0){
-				div1.style["right"] = 0+"px";
-				div2.style["right"] = 0+"px";
+				cardA.div.style["right"] = 0+"px";
+				cardB.div.style["right"] = 0+"px";
+
+				var tempImg = cardA.imgSrc;
+				cardA.imgSrc = cardB.imgSrc;
+				cardB.imgSrc=tempImg;
+
+				var tempBool = cardA.isQueen;
+				cardA.isQueen = cardB.isQueen;
+				cardB.isQueen = tempBool;
+
+				
+				hideCards();
+				showBackCards();
 				clearInterval(interval);
 			}
 		},10);
 	},timer);
 	timer+=1500;
+
+
+
+
+
 }
 
-	var myCardFront = document.getElementsByClassName('front');
-		var myCardBack = document.getElementsByClassName('back');
-		var mycardLength = myCardBack.length;
-		var button = document.getElementById("play");
-		var flipCards=function () {
-			startBtn.disabled = true;
-			for (var i=0; i< mycardLength; i++)
-			{
-				myCardFront[i].style = "transform: perspective( 600px ) rotateY( -180deg )"
-				myCardBack[i].style = "transform: perspective( 600px ) rotateY( 0deg )"
-			}	
-			setTimeout(shuffle,500);
-		}
-		startBtn.addEventListener('click',flipCards);
-		var clickedCard=0;
 
-	var shuffle=function(){
-		mov(divCard1,divCard2);
-		setTimeout(function(){mov(divCard2,divCard3);},timer+100);
-		setTimeout(function(){mov(divCard1,divCard2);},(timer+100)*2);
+
+
+
+
+// var mov2 = function(cardA,cardB){
+// 	timer = 0;
+// 	var margin = 0;
+// 	if(cardA.div.getBoundingClientRect().right<cardB.div.getBoundingClientRect().right){
+// 		var tempCard = cardA;
+// 		cardA = cardB;
+// 		cardB = tempCard;
+// 	}
+
+
+
+
+// 	setTimeout(function(){
+// 		var interval = setInterval(function(){
+// 			margin+=4
+// 			cardA.div.style["top"] = margin +"px";
+// 			cardB.div.style["top"] = -margin +"px";
+
+// 			if(margin >= 150){
+// 				clearInterval(interval);
+// 			}
+// 		},10);
+// 	},0);
+// 	timer+=1567;
+// 	//=======================================================
+// 	var marginR =0;
+// 	var rightDiff = cardA.div.getBoundingClientRect().right-cardB.div.getBoundingClientRect().right;
+// 		setTimeout(function(){
+// 			var interval = setInterval(function(){
+// 				marginR+=4;
+// 				cardA.div.style["right"] = marginR+"px";
+// 				cardB.div.style["right"] =-marginR+"px";
+// 				if(marginR >= rightDiff){
+// 					clearInterval(interval);
+// 				}
+
+// 			},10)},timer/4);
+// 		if(rightDiff <= 240){
+// 			timer+=2450;
+// 		}else{
+// 			timer+=4850;
+
+// 		}
+	
+// //=======================================================	
+// 	setTimeout(function(){
+// 		var interval = setInterval(function(){
+// 			margin-=4;
+// 			cardA.div.style["top"] = margin +"px";
+// 			cardB.div.style["top"] = -margin +"px";
+
+// 			if(margin <= 0){
+// 				cardA.div.style["right"] = 0+"px";
+// 				cardB.div.style["right"] = 0+"px";
+
+// 				var tempImg = cardA.imgSrc;
+// 				cardA.imgSrc = cardB.imgSrc;
+// 				cardB.imgSrc=tempImg;
+
+// 				var tempBool = cardA.isQueen;
+// 				cardA.isQueen = cardB.isQueen;
+// 				cardB.isQueen = tempBool;
+// 				hideCards();
+// 				showBackCards();
+// 				clearInterval(interval);
+// 			}
+// 		},10);
+// 	},timer/4);
+// 	timer+=1500;
+
+
+
+
+
+// }
+
+
+
+
+
+
+
+
+var mov3 = function(cardA,cardB){
+	timer = 0;
+	var margin = 0;
+	if(cardA.div.getBoundingClientRect().right<cardB.div.getBoundingClientRect().right){
+		var tempCard = cardA;
+		cardA = cardB;
+		cardB = tempCard;
+	}
+
+
+
+
+	setTimeout(function(){
+		var interval = setInterval(function(){
+			margin+=10;
+			cardA.div.style["top"] = margin +"px";
+			cardB.div.style["top"] = -margin +"px";
+
+			if(margin >= 150){
+				clearInterval(interval);
+			}
+		},10);
+	},0);
+	timer+=1567;
+	//=======================================================
+	var marginR =0;
+	var rightDiff = cardA.div.getBoundingClientRect().right-cardB.div.getBoundingClientRect().right;
+		setTimeout(function(){
+			var interval = setInterval(function(){
+				marginR+=10;
+				cardA.div.style["right"] = marginR+"px";
+				cardB.div.style["right"] =-marginR+"px";
+				if(marginR >= rightDiff){
+					clearInterval(interval);
+				}
+
+			},10)},timer/10);
+		if(rightDiff <= 240){
+			timer+=2450;
+		}else{
+			timer+=4850;
+
+		}
+	
+//=======================================================	
+	setTimeout(function(){
+		var interval = setInterval(function(){
+			margin-=10;
+			cardA.div.style["top"] = margin +"px";
+			cardB.div.style["top"] = -margin +"px";
+
+			if(margin <= 0){
+				cardA.div.style["right"] = 0+"px";
+				cardB.div.style["right"] = 0+"px";
+
+				var tempImg = cardA.imgSrc;
+				cardA.imgSrc = cardB.imgSrc;
+				cardB.imgSrc=tempImg;
+
+				var tempBool = cardA.isQueen;
+				cardA.isQueen = cardB.isQueen;
+				cardB.isQueen = tempBool;
+
+				hideCards();
+				showBackCards();
+				clearInterval(interval);
+			}
+		},10);
+	},timer/10);
+	timer+=1500;
+
+
+
+
+
+}
+
+
+
+
+
+var mov4 = function(cardA,cardB){
+
+	timer = 0;
+	var margin = 0;
+	if(cardA.div.getBoundingClientRect().right<cardB.div.getBoundingClientRect().right){
+		var tempCard = cardA;
+		cardA = cardB;
+		cardB = tempCard;
+	}
+
+
+
+
+	setTimeout(function(){
+		var interval = setInterval(function(){
+			margin+=20;
+			cardA.div.style["top"] = margin +"px";
+			cardB.div.style["top"] = -margin +"px";
+
+			if(margin >= 150){
+				clearInterval(interval);
+			}
+		},10);
+	},0);
+	timer+=1567;
+	//=======================================================
+	var marginR =0;
+	var rightDiff = cardA.div.getBoundingClientRect().right-cardB.div.getBoundingClientRect().right;
+		setTimeout(function(){
+			var interval = setInterval(function(){
+				marginR+=20;
+				cardA.div.style["right"] = marginR+"px";
+				cardB.div.style["right"] =-marginR+"px";
+				if(marginR >= rightDiff){
+					clearInterval(interval);
+				}
+
+			},10)},timer/20);
+		if(rightDiff <= 240){
+			timer+=2450;
+		}else{
+			timer+=4850;
+
+		}
+	
+//=======================================================	
+	setTimeout(function(){
+		var interval = setInterval(function(){
+			margin-=20;
+			cardA.div.style["top"] = margin +"px";
+			cardB.div.style["top"] = -margin +"px";
+
+			if(margin <= 0){
+				cardA.div.style["right"] = 0+"px";
+				cardB.div.style["right"] = 0+"px";
+
+				var tempImg = cardA.imgSrc;
+				cardA.imgSrc = cardB.imgSrc;
+				cardB.imgSrc=tempImg;
+
+				var tempBool = cardA.isQueen;
+				cardA.isQueen = cardB.isQueen;
+				cardB.isQueen = tempBool;
+
+				hideCards();
+				showBackCards();
+				clearInterval(interval);
+			}
+		},10);
+	},timer/20);
+	timer+=1500;
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+var mov5 = function(cardA,cardB){
+	timer = 0;
+	var margin = 0;
+	if(cardA.div.getBoundingClientRect().right<cardB.div.getBoundingClientRect().right){
+		var tempCard = cardA;
+		cardA = cardB;
+		cardB = tempCard;
+	}
+
+
+
+
+	setTimeout(function(){
+		var interval = setInterval(function(){
+			margin+=50;
+			cardA.div.style["top"] = margin +"px";
+			cardB.div.style["top"] = -margin +"px";
+
+			if(margin >= 150){
+				clearInterval(interval);
+			}
+		},10);
+	},0);
+	timer+=1567;
+	//=======================================================
+	var marginR =0;
+	var rightDiff = cardA.div.getBoundingClientRect().right-cardB.div.getBoundingClientRect().right;
+		setTimeout(function(){
+			var interval = setInterval(function(){
+				marginR+=50;
+				cardA.div.style["right"] = marginR+"px";
+				cardB.div.style["right"] =-marginR+"px";
+				if(marginR >= rightDiff){
+					clearInterval(interval);
+				}
+
+			},10)},timer/50);
+		if(rightDiff <= 240){
+			timer+=2450;
+		}else{
+			timer+=4850;
+
+		}
+	
+//=======================================================	
+	setTimeout(function(){
+		var interval = setInterval(function(){
+			margin-=50;
+			cardA.div.style["top"] = margin +"px";
+			cardB.div.style["top"] = -margin +"px";
+
+			if(margin <= 0){
+				cardA.div.style["right"] = 0+"px";
+				cardB.div.style["right"] = 0+"px";
+				var tempImg = cardA.imgSrc;
+				cardA.imgSrc = cardB.imgSrc;
+				cardB.imgSrc=tempImg;
+
+				var tempBool = cardA.isQueen;
+				cardA.isQueen = cardB.isQueen;
+				cardB.isQueen = tempBool;
+
+
+				hideCards();
+				showBackCards();
+				clearInterval(interval);
+			}
+		},10);
+	},timer/50);
+	timer+=1500;
+
+
+
+
+
+}
+
+// ===========================================================================================
+
+var removeListeners = function(){
+		card1.div.removeEventListener('click',success);
+		card2.div.removeEventListener('click',fail);
+		card3.div.removeEventListener('click',fail);
+}
+var disClick = function(){
+				card1.div.style["pointer-events"]="none"
+				card2.div.style["pointer-events"]="none"
+				card3.div.style["pointer-events"]="none"
+
+}
+
+
+
+
+var success = function(Card){
+				//Congraaaats
+
+				
+				score+=10;
+				showFrontCards();
+				disClick();
+
+				if(score>=10&&score<160){
+					//show bage1();
+					if(score == 10){
+							ShowMessage ("Pics/level1.png", "Good Job! your score is " +score)
+						messageDiv.classList.add("messageAnimation")
+
+						document.body.onkeyup = function(e){
+							if(e.keyCode == 32){
+								hideMessage();
+			  	 			}
+							
+						}
+					}
+					continueBtn2.style.display = "block";
+					// if(score>10)
+					// score-=10;
+				}else{
+					//show badge2();
+					if(score == 160){
+						ShowMessage ("Pics/level2.png", "Good Job! your score is " +score)
+						messageDiv.classList.add("messageAnimation")
+
+						document.body.onkeyup = function(e){
+							if(e.keyCode == 32){
+								hideMessage();
+			  	 			}
+							
+						}
+
+					
+					// if(score>80)
+					// score-=20;
+					}
+					
+					continueBtn2.style.display = "none";
+					continueBtn4.style.display = "block";
+				}
+				
+			}		
+
+var fail =function(Card){
+						//Looose
+				ShowMessage ("Pics/lost.png", "You Lose... your score is " +score)
+				document.body.onkeyup = function(e){
+					if(e.keyCode == 32){
+						hideMessage();
+		  	 		}
+		  	 		showFrontCards();
+						restartBtn.style.display = "block";
+						continueBtn.style.display = "none";
+						disClick();	
+		  	 	}								
+			};	
+
+var checkRight = function(time,lvl){
+				setTimeout(function(){
+					card1.div.addEventListener('click',function _func(){
+							removeEventListener('click',_func);
+
+							if(card1.isQueen==true){
+								success(card1);
+							}else{
+								fail(card1);
+							}
+							
+						});
+					card2.div.addEventListener('click',function _func(){
+							removeEventListener('click',_func);
+
+							if(card2.isQueen==true){
+								success(card2);
+							}else{
+								fail(card2);
+							}
+						});
+					card3.div.addEventListener('click',function _func(){
+							removeEventListener('click',_func);
+							
+							if(card3.isQueen==true){
+								success(card3);
+							}else{
+								fail(card3);
+							}
+						});
+				},time/lvl);
+
+}
+
+
+
+
+
+
+// ==============================================================================================
+//Let the game begin
+
+
+var score = 0;
+var badge3,badge2,badge1;
+var badgeLost= "Pics/lost.jpg";
+var level = 0;
+
+				
+
+	
+	//Level1
+
+	startBtn.addEventListener('click',function _btnfunc(){
+		//Hide front and show back
+		hideCards();
+		showBackCards();
+
+		startBtn.style.display = "none";
+		var random = parseInt(Math.random()*3)+1;
+		if(random == 1){
+			mov(card2,card3);
+			var Timer = timer+100;
+			setTimeout(function(){mov(card1,card3);},Timer);
+			Timer+=Timer+2400;
+			setTimeout(function(){
+				mov(card1,card2);
+				checkRight(timer,1);
+
+			},Timer);
+		}else if(random == 2){
+			mov(card2,card3)
+			var Timer = timer+100;
+			setTimeout(function(){mov(card1,card3);},Timer);
+			Timer+=Timer+2400;
+			setTimeout(function(){
+				mov(card1,card3);
+				checkRight(timer,1);
+
+			},Timer);
+
+		}else{
+			mov(card1,card3);
+			var Timer = timer+100;
+			setTimeout(function(){mov(card2,card3);},Timer);
+			Timer+= 5800;
+			setTimeout(function(){
+				mov(card1,card2);
+				checkRight(timer,1);
+
+			},Timer);
+		}
+
+					// card1.div.addEventListener('click',function _func(){
+							
+					// 		if(card1.isQueen==true){
+					// 			success(card1);
+					// 		}else{
+					// 			fail(card1);
+					// 		}
+					// 		removeEventListener('click',_func);
+					// 	});
+					// card2.div.addEventListener('click',function _func(){
+							
+					// 		if(card2.isQueen==true){
+					// 			success(card2);
+					// 		}else{
+					// 			fail(card2);
+					// 		}
+					// 		removeEventListener('click',_func);
+					// 	});
+					// card3.div.addEventListener('click',function _func(){
+							
+					// 		if(card3.isQueen==true){
+					// 			success(card3);
+					// 		}else{
+					// 			fail(card3);
+					// 		}
+					// 		removeEventListener('click',_func);
+					// 	});
+					//Showing the button of the next level
+					//}else{Say sorry and restat the game}
+
+				startBtn.removeEventListener('click',_btnfunc);
+
+
+
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //level2
+// 	var counterLevel4=0;
+
+
+
+// 	continueBtn.addEventListener('click',function(){
 		
-	};
-	setTimeout(function () {
-		divCard1.addEventListener('click',function () {
-			myCardFront[0].style = "transform: perspective( 600px ) rotateY( 0deg )";
-			myCardBack[0].style = "transform: perspective( 600px ) rotateY( -180deg )";
-			clickedCard=1;
-		});
-	},1000);
-	setTimeout(function () {
-		divCard2.addEventListener('click',function () {
-			myCardFront[1].style = "transform: perspective( 600px ) rotateY( 0deg )";
-			myCardBack[1].style = "transform: perspective( 600px ) rotateY( -180deg )";
-			clickedCard=2;
-		});
-	},1000);
-	setTimeout(function () {
-		divCard3.addEventListener('click',function () {
-			myCardFront[2].style = "transform: perspective( 600px ) rotateY( 0deg )";
-			myCardBack[2].style = "transform: perspective( 600px ) rotateY( -180deg )";
-			clickedCard=3;
-		});
-	},1000);
-		
+// 		//Hide front and show back
+// 		hideCards();
+// 		showBackCards();
+// 		card1.div.style["pointer-events"]="auto"						
+// 		card2.div.style["pointer-events"]="auto"						
+// 		card3.div.style["pointer-events"]="auto"
+// 		continueBtn.style.display = "none";
+
+
+// 		continueBtn.style.display = "none";
+// 		var random = parseInt(Math.random()*3)+1;
+// 		var Timer=0;
+// 		if(random == 1){
+// 				mov2(card1,card3);
+// 				Timer = 8200;
+// 				setTimeout(function(){mov2(card2,card3);},Timer/4);
+// 				Timer+= 5800;
+// 				setTimeout(function(){
+// 					mov2(card3,card2);
+// 					setTimeout(function(){
+// 						card1.div.addEventListener('click',function _func(){
+// 							if(card1.isQueen==true){
+// 								success(card1);
+// 							}else{
+// 								fail(card1);
+// 							}
+// 							removeEventListener('click',_func);
+// 						});
+// 					card2.div.addEventListener('click',function _func(){
+// 							if(card2.isQueen==true){
+// 								success(card2);
+// 							}else{
+// 								fail(card2);
+// 							}
+// 							removeEventListener('click',_func);
+// 						});
+// 					card3.div.addEventListener('click',function _func(){
+// 							if(card3.isQueen==true){
+// 								success(card3);;
+// 							}else{
+// 								fail(card3);
+// 							}
+// 							removeEventListener('click',_func);
+// 						});
+
+// 					},(timer+100)/4);
+
+// 				},Timer/4);
+// 				Timer+=5800;
+// 		}else if(random == 2){
+// 				mov2(card1,card2);
+// 				Timer = 5800;
+// 				setTimeout(function(){mov2(card1,card3);},Timer/4);
+// 				Timer+=8200;
+// 				setTimeout(function(){
+// 					mov2(card1,card2);
+// 					setTimeout(function(){
+						
+// 						card1.div.addEventListener('click',function _func(){
+// 							if(card1.isQueen==true){
+// 								success(card1);
+// 							}else{
+// 								fail(card1);
+// 							}
+// 							removeEventListener('click',_func);
+// 						});
+// 					card2.div.addEventListener('click',function _func(){
+// 							if(card2.isQueen==true){
+// 								success(card2);
+// 							}else{
+// 								fail(card2);
+// 							}
+// 							removeEventListener('click',_func);
+// 						});
+// 					card3.div.addEventListener('click',function _func(){
+// 							if(card3.isQueen==true){
+// 								success(card3);
+// 							}else{
+// 								fail(card3);
+// 							}
+// 							removeEventListener('click',_func);
+// 						});
+
+// 					},(timer+100)/4)
+
+
+// 				},Timer/4);
+// 				Timer+=5800;
+// 		}else{
+// 				mov2(card2,card3)
+// 				Timer = 5800;
+// 				setTimeout(function(){mov2(card1,card3);},Timer/4);
+// 				Timer+=8200;
+// 				setTimeout(function(){
+// 					mov2(card1,card3);
+// 					setTimeout(function(){
+						
+// 						card1.div.addEventListener('click',function _func(){
+// 							if(card1.isQueen==true){
+// 								success(card1);
+// 							}else{
+// 								fail(card1);
+// 							}
+// 							removeEventListener('click',_func);
+// 						});
+// 					card2.div.addEventListener('click',function _func(){
+// 							if(card2.isQueen==true){
+// 								success(card2);
+// 							}else{
+// 								fail(card2);
+// 							}
+// 							removeEventListener('click',_func);
+// 						});
+// 					card3.div.addEventListener('click',function _func(){
+// 							if(card3.isQueen==true){
+// 								success(card3);
+// 							}else{
+// 								fail(card3);
+// 							}
+// 							removeEventListener('click',_func);
+// 						});
+// 					},Timer/4);
+// 					Timer+=8200;			
+
+// 				},Timer/4);
+// 			}
+	
+
+
+// 	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//level3
+	var counterLevel10=0;
+
+	continueBtn2.addEventListener('click',function(){
+		//Hide front and show back
+		hideCards();
+		showBackCards();
+
+		//Enabling clicking cards after being disabled from the last round
+		card1.div.style["pointer-events"]="auto"						
+		card2.div.style["pointer-events"]="auto"						
+		card3.div.style["pointer-events"]="auto"
+		continueBtn2.style.display = "none";
+		var random = parseInt(Math.random()*3)+1;
+		var Timer=0;
+		if(random == 1){
+				mov3(card1,card3);
+				Timer = 8200;
+				setTimeout(function(){mov3(card2,card3);},Timer/10);
+				Timer+= 5800;
+				setTimeout(function(){
+					mov3(card1,card2);
+					checkRight(timer,10);
+				},Timer/10);
+				Timer+=5800;
+		}else if(random == 2){
+				mov3(card1,card2);
+				Timer = 5800;
+				setTimeout(function(){mov3(card1,card3);},Timer/10);
+				Timer+=8200;
+				setTimeout(function(){
+					mov3(card1,card2);
+					checkRight(timer,10);
+
+				},Timer/10);
+				Timer+=5800;
+		}else{
+				mov3(card2,card3)
+				Timer = 5800;
+				setTimeout(function(){mov3(card1,card3);},Timer/10);
+				Timer+=8200;
+				setTimeout(function(){
+					mov3(card2,card3);
+					checkRight(timer,10);
+
+				},Timer/10);
+				Timer+=5800;			
+
+		}
+
+
+	 });
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //level 4
+// 	var counterLevel20=0;
+
+
+
+
+// 	continueBtn3.addEventListener('click',function(){
+// 		//Hide front and show back
+// 		hideCards();
+// 		showBackCards();
+// 		continueBtn3.style.display = "none";
+// 		var random = parseInt(Math.random()*3)+1;
+// 		var Timer=0;
+// 		if(random == 1){
+// 				mov4(card1,card3);
+// 				Timer = 8200;
+// 				setTimeout(function(){mov4(card2,card3);},Timer/20);
+// 				Timer+= 5800;
+// 				setTimeout(function(){
+// 					mov4(card1,card2);
+// 					setTimeout(function(){
+// 						//Same as before
+// 						continueBtn3.style.display = "block";
+// 					},(timer+100)/20);
+
+// 				},Timer/20);
+// 				Timer+=5800;
+// 		}else if(random == 2){
+// 				mov4(card1,card2);
+// 				Timer = 5800;
+// 				setTimeout(function(){mov4(card1,card3);},Timer/20);
+// 				Timer+=8200;
+// 				setTimeout(function(){
+// 					mov4(card1,card2);
+// 					setTimeout(function(){
+// 						//Same as before
+// 						continueBtn3.style.display = "block";
+// 				},(timer+100)/20)
+
+
+// 				},Timer/20);
+// 				Timer+=5800;
+// 		}else{
+// 				mov4(card2,card3)
+// 				Timer = 5800;
+// 				setTimeout(function(){mov4(card1,card3);},Timer/20);
+// 				Timer+=8200;
+// 				setTimeout(function(){
+// 					mov4(card2,card3);
+// 					setTimeout(function(){
+// 						//Same as before
+// 						continueBtn3.style.display = "block";
+// 					},(timer+100)/20)
+
+// 				},Timer/20);
+// 				Timer+=5800;			
+
+// 		}
+
+// 		//Same ba2a mesh sho8lana
+// 		counterLevel20++;
+// 		setTimeout(function(){
+// 			if(counterLevel20==2){
+// 				continueBtn3.style.display = "none";
+// 				continueBtn4.style.display = "block";
+// 			}
+// 		},Timer/20);
+
+// 	 });
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+//level5
+	continueBtn4.addEventListener('click',function(){
+		//Hide front and show back
+		hideCards();
+		showBackCards();
+
+		card1.div.style["pointer-events"]="auto"						
+		card2.div.style["pointer-events"]="auto"						
+		card3.div.style["pointer-events"]="auto"
+
+		continueBtn4.style.display = "none";
+		var random = parseInt(Math.random()*3)+1;
+		var Timer=0;
+		if(random == 1){
+				mov5(card1,card3);
+				Timer = 8600;
+				setTimeout(function(){mov5(card2,card3);},Timer/50);
+				Timer+= 6200;
+				setTimeout(function(){
+					mov5(card1,card2);
+					checkRight(timer,50);
+
+				},Timer/50);
+				Timer+=6200;
+		}else if(random == 2){
+				mov5(card1,card2);
+				Timer = 6200;
+				setTimeout(function(){mov5(card1,card3);},Timer/50);
+				Timer+=8600;
+				setTimeout(function(){
+					mov5(card1,card2);
+					checkRight(timer,50);	
+
+
+				},Timer/50);
+				Timer+=6200;
+		}else{
+				mov5(card2,card3)
+				Timer = 6200;
+				setTimeout(function(){mov5(card1,card3);},Timer/50);
+				Timer+=8600;
+				setTimeout(function(){
+					mov5(card2,card3);
+					checkRight(timer,50);
+				},Timer/50);
+				Timer+=6200;			
+
+		}
+
+	 	// card1.div.addEventListener('click',function _func(){
+							
+			// 				if(card1.isQueen==true){
+			// 					success(card1);
+			// 				}else{
+			// 					fail(card1);
+			// 				}
+			// 				removeEventListener('click',_func);
+			// 			});
+			// 		card2.div.addEventListener('click',function _func(){
+							
+			// 				if(card2.isQueen==true){
+			// 					success(card2);
+			// 				}else{
+			// 					fail(card2);
+			// 				}
+			// 				removeEventListener('click',_func);
+			// 			});
+			// 		card3.div.addEventListener('click',function _func(){
+							
+			// 				if(card3.isQueen==true){
+			// 					success(card3);
+			// 				}else{
+			// 					fail(card3);
+			// 				}
+			// 				removeEventListener('click',_func);
+			// 			});
+
+	 });
+
+
+
+
+
+	restartBtn.addEventListener('click',function(){
+		location.reload(); 
+	});
