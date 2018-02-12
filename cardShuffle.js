@@ -1,5 +1,7 @@
 var interval;
 var timer=0;
+var score = 0;
+var level = 0;
 class Card {
   constructor(check,imgSrc,backImg,div) {
     this.isQueen = check;
@@ -9,7 +11,17 @@ class Card {
   }
 }
 
+var charImg = document.getElementById("charaImg");
+var charName = document.getElementById("name");
+var charScore = document.getElementById("score");
 
+charScore.textContent = score;
+ var url = window.location.href;
+  var getit = new Array();
+  getit = url.split("?");
+  var params = getit[1].split("&");
+  charImg.src = params[1];
+  charName.textContent = params[0];
 var backgroundDiv = document.getElementById('gameBoard');
 var card1 = new Card(true, "Pics/aceOfHeartRed.jpg","Pics/cardBack.jpg",document.getElementById('card1'));
 var card2 = new Card(false, "Pics/aceOfSpadeRed.jpg","Pics/cardBack.jpg",document.getElementById('card2'));
@@ -59,21 +71,6 @@ function ShowMessage (imgSrc,textMes) {
 }
 
 
-// function ShowMessage (imgSrc,textMes) 
-// {
-//   if(!showing)
-//   {messageImg.src=imgSrc;
-//   Message.innerHTML=textMes;
-//   superDiv.style.opacity=0.4;
-//   clearInterval(SetIntervalChar)
-//   clearInterval(SetInterval)
-//   SetInterval=null
-//   SetIntervalChar=null
-//   messageDiv.style.visibility="visible"
-//   messageDiv.classList.add("messageAnimation")
-//   // button1.classList.add("button")
-//   showing=true}
-
 
 function hideMessage (){
   messageDiv.classList.remove("messageAnimation")
@@ -108,19 +105,6 @@ document.getElementsByClassName('back')[1].style.display='none'
 document.getElementsByClassName('back')[2].style.display='none'
 };
 showFrontCards();
-
-
-
-
-
-
-
-
-
-// var divCard1 = document.getElementById('card1');
-// var divCard2 = document.getElementById('card2');
-// var divCard3 = document.getElementById('card3');
-// var startBtn = document.getElementById('startBtn');
 
 
 //The move functions
@@ -199,90 +183,6 @@ var mov = function(cardA,cardB){
 
 
 }
-
-
-
-
-
-
-// var mov2 = function(cardA,cardB){
-// 	timer = 0;
-// 	var margin = 0;
-// 	if(cardA.div.getBoundingClientRect().right<cardB.div.getBoundingClientRect().right){
-// 		var tempCard = cardA;
-// 		cardA = cardB;
-// 		cardB = tempCard;
-// 	}
-
-
-
-
-// 	setTimeout(function(){
-// 		var interval = setInterval(function(){
-// 			margin+=4
-// 			cardA.div.style["top"] = margin +"px";
-// 			cardB.div.style["top"] = -margin +"px";
-
-// 			if(margin >= 150){
-// 				clearInterval(interval);
-// 			}
-// 		},10);
-// 	},0);
-// 	timer+=1567;
-// 	//=======================================================
-// 	var marginR =0;
-// 	var rightDiff = cardA.div.getBoundingClientRect().right-cardB.div.getBoundingClientRect().right;
-// 		setTimeout(function(){
-// 			var interval = setInterval(function(){
-// 				marginR+=4;
-// 				cardA.div.style["right"] = marginR+"px";
-// 				cardB.div.style["right"] =-marginR+"px";
-// 				if(marginR >= rightDiff){
-// 					clearInterval(interval);
-// 				}
-
-// 			},10)},timer/4);
-// 		if(rightDiff <= 240){
-// 			timer+=2450;
-// 		}else{
-// 			timer+=4850;
-
-// 		}
-	
-// //=======================================================	
-// 	setTimeout(function(){
-// 		var interval = setInterval(function(){
-// 			margin-=4;
-// 			cardA.div.style["top"] = margin +"px";
-// 			cardB.div.style["top"] = -margin +"px";
-
-// 			if(margin <= 0){
-// 				cardA.div.style["right"] = 0+"px";
-// 				cardB.div.style["right"] = 0+"px";
-
-// 				var tempImg = cardA.imgSrc;
-// 				cardA.imgSrc = cardB.imgSrc;
-// 				cardB.imgSrc=tempImg;
-
-// 				var tempBool = cardA.isQueen;
-// 				cardA.isQueen = cardB.isQueen;
-// 				cardB.isQueen = tempBool;
-// 				hideCards();
-// 				showBackCards();
-// 				clearInterval(interval);
-// 			}
-// 		},10);
-// 	},timer/4);
-// 	timer+=1500;
-
-
-
-
-
-// }
-
-
-
 
 
 
@@ -554,6 +454,7 @@ var success = function(Card){
 
 				
 				score+=10;
+				charScore.textContent = score;
 				showFrontCards();
 				disClick();
 
@@ -654,10 +555,10 @@ var checkRight = function(time,lvl){
 //Let the game begin
 
 
-var score = 0;
+
 var badge3,badge2,badge1;
 var badgeLost= "Pics/lost.jpg";
-var level = 0;
+
 
 				
 
@@ -704,212 +605,12 @@ var level = 0;
 			},Timer);
 		}
 
-					// card1.div.addEventListener('click',function _func(){
-							
-					// 		if(card1.isQueen==true){
-					// 			success(card1);
-					// 		}else{
-					// 			fail(card1);
-					// 		}
-					// 		removeEventListener('click',_func);
-					// 	});
-					// card2.div.addEventListener('click',function _func(){
-							
-					// 		if(card2.isQueen==true){
-					// 			success(card2);
-					// 		}else{
-					// 			fail(card2);
-					// 		}
-					// 		removeEventListener('click',_func);
-					// 	});
-					// card3.div.addEventListener('click',function _func(){
-							
-					// 		if(card3.isQueen==true){
-					// 			success(card3);
-					// 		}else{
-					// 			fail(card3);
-					// 		}
-					// 		removeEventListener('click',_func);
-					// 	});
-					//Showing the button of the next level
-					//}else{Say sorry and restat the game}
 
 				startBtn.removeEventListener('click',_btnfunc);
 
 
 
 	});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //level2
-// 	var counterLevel4=0;
-
-
-
-// 	continueBtn.addEventListener('click',function(){
-		
-// 		//Hide front and show back
-// 		hideCards();
-// 		showBackCards();
-// 		card1.div.style["pointer-events"]="auto"						
-// 		card2.div.style["pointer-events"]="auto"						
-// 		card3.div.style["pointer-events"]="auto"
-// 		continueBtn.style.display = "none";
-
-
-// 		continueBtn.style.display = "none";
-// 		var random = parseInt(Math.random()*3)+1;
-// 		var Timer=0;
-// 		if(random == 1){
-// 				mov2(card1,card3);
-// 				Timer = 8200;
-// 				setTimeout(function(){mov2(card2,card3);},Timer/4);
-// 				Timer+= 5800;
-// 				setTimeout(function(){
-// 					mov2(card3,card2);
-// 					setTimeout(function(){
-// 						card1.div.addEventListener('click',function _func(){
-// 							if(card1.isQueen==true){
-// 								success(card1);
-// 							}else{
-// 								fail(card1);
-// 							}
-// 							removeEventListener('click',_func);
-// 						});
-// 					card2.div.addEventListener('click',function _func(){
-// 							if(card2.isQueen==true){
-// 								success(card2);
-// 							}else{
-// 								fail(card2);
-// 							}
-// 							removeEventListener('click',_func);
-// 						});
-// 					card3.div.addEventListener('click',function _func(){
-// 							if(card3.isQueen==true){
-// 								success(card3);;
-// 							}else{
-// 								fail(card3);
-// 							}
-// 							removeEventListener('click',_func);
-// 						});
-
-// 					},(timer+100)/4);
-
-// 				},Timer/4);
-// 				Timer+=5800;
-// 		}else if(random == 2){
-// 				mov2(card1,card2);
-// 				Timer = 5800;
-// 				setTimeout(function(){mov2(card1,card3);},Timer/4);
-// 				Timer+=8200;
-// 				setTimeout(function(){
-// 					mov2(card1,card2);
-// 					setTimeout(function(){
-						
-// 						card1.div.addEventListener('click',function _func(){
-// 							if(card1.isQueen==true){
-// 								success(card1);
-// 							}else{
-// 								fail(card1);
-// 							}
-// 							removeEventListener('click',_func);
-// 						});
-// 					card2.div.addEventListener('click',function _func(){
-// 							if(card2.isQueen==true){
-// 								success(card2);
-// 							}else{
-// 								fail(card2);
-// 							}
-// 							removeEventListener('click',_func);
-// 						});
-// 					card3.div.addEventListener('click',function _func(){
-// 							if(card3.isQueen==true){
-// 								success(card3);
-// 							}else{
-// 								fail(card3);
-// 							}
-// 							removeEventListener('click',_func);
-// 						});
-
-// 					},(timer+100)/4)
-
-
-// 				},Timer/4);
-// 				Timer+=5800;
-// 		}else{
-// 				mov2(card2,card3)
-// 				Timer = 5800;
-// 				setTimeout(function(){mov2(card1,card3);},Timer/4);
-// 				Timer+=8200;
-// 				setTimeout(function(){
-// 					mov2(card1,card3);
-// 					setTimeout(function(){
-						
-// 						card1.div.addEventListener('click',function _func(){
-// 							if(card1.isQueen==true){
-// 								success(card1);
-// 							}else{
-// 								fail(card1);
-// 							}
-// 							removeEventListener('click',_func);
-// 						});
-// 					card2.div.addEventListener('click',function _func(){
-// 							if(card2.isQueen==true){
-// 								success(card2);
-// 							}else{
-// 								fail(card2);
-// 							}
-// 							removeEventListener('click',_func);
-// 						});
-// 					card3.div.addEventListener('click',function _func(){
-// 							if(card3.isQueen==true){
-// 								success(card3);
-// 							}else{
-// 								fail(card3);
-// 							}
-// 							removeEventListener('click',_func);
-// 						});
-// 					},Timer/4);
-// 					Timer+=8200;			
-
-// 				},Timer/4);
-// 			}
-	
-
-
-// 	});
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -965,124 +666,7 @@ var level = 0;
 
 
 	 });
-
-
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //level 4
-// 	var counterLevel20=0;
-
-
-
-
-// 	continueBtn3.addEventListener('click',function(){
-// 		//Hide front and show back
-// 		hideCards();
-// 		showBackCards();
-// 		continueBtn3.style.display = "none";
-// 		var random = parseInt(Math.random()*3)+1;
-// 		var Timer=0;
-// 		if(random == 1){
-// 				mov4(card1,card3);
-// 				Timer = 8200;
-// 				setTimeout(function(){mov4(card2,card3);},Timer/20);
-// 				Timer+= 5800;
-// 				setTimeout(function(){
-// 					mov4(card1,card2);
-// 					setTimeout(function(){
-// 						//Same as before
-// 						continueBtn3.style.display = "block";
-// 					},(timer+100)/20);
-
-// 				},Timer/20);
-// 				Timer+=5800;
-// 		}else if(random == 2){
-// 				mov4(card1,card2);
-// 				Timer = 5800;
-// 				setTimeout(function(){mov4(card1,card3);},Timer/20);
-// 				Timer+=8200;
-// 				setTimeout(function(){
-// 					mov4(card1,card2);
-// 					setTimeout(function(){
-// 						//Same as before
-// 						continueBtn3.style.display = "block";
-// 				},(timer+100)/20)
-
-
-// 				},Timer/20);
-// 				Timer+=5800;
-// 		}else{
-// 				mov4(card2,card3)
-// 				Timer = 5800;
-// 				setTimeout(function(){mov4(card1,card3);},Timer/20);
-// 				Timer+=8200;
-// 				setTimeout(function(){
-// 					mov4(card2,card3);
-// 					setTimeout(function(){
-// 						//Same as before
-// 						continueBtn3.style.display = "block";
-// 					},(timer+100)/20)
-
-// 				},Timer/20);
-// 				Timer+=5800;			
-
-// 		}
-
-// 		//Same ba2a mesh sho8lana
-// 		counterLevel20++;
-// 		setTimeout(function(){
-// 			if(counterLevel20==2){
-// 				continueBtn3.style.display = "none";
-// 				continueBtn4.style.display = "block";
-// 			}
-// 		},Timer/20);
-
-// 	 });
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
 
 
 //level5
@@ -1134,33 +718,6 @@ var level = 0;
 
 		}
 
-	 	// card1.div.addEventListener('click',function _func(){
-							
-			// 				if(card1.isQueen==true){
-			// 					success(card1);
-			// 				}else{
-			// 					fail(card1);
-			// 				}
-			// 				removeEventListener('click',_func);
-			// 			});
-			// 		card2.div.addEventListener('click',function _func(){
-							
-			// 				if(card2.isQueen==true){
-			// 					success(card2);
-			// 				}else{
-			// 					fail(card2);
-			// 				}
-			// 				removeEventListener('click',_func);
-			// 			});
-			// 		card3.div.addEventListener('click',function _func(){
-							
-			// 				if(card3.isQueen==true){
-			// 					success(card3);
-			// 				}else{
-			// 					fail(card3);
-			// 				}
-			// 				removeEventListener('click',_func);
-			// 			});
 
 	 });
 

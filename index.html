@@ -5,22 +5,26 @@
 	<link rel="shortcut icon" type="image/png" href="Pics/Queen.png">
 </head>
 <body>
-
-
+<div id="characterBar"><img id="charaImg" src="">
+		 <label class="charName" id="name"></label>
+		 <label class="leftlabel"> score: </label> 
+		 <label class="charName" id="score"></label> </div>
 	<div id="gameBoard">
 		<div class="mycard" id = "card1"></div>
 		<div class="mycard" id = "card2"></div>
 		<div class="mycard" id = "card3"></div>
 
 	</div>
-
+<audio autoplay loop>
+  <source src="audio/intro.mp3" type="audio/mpeg">
+</audio>
 	<div id="messageDiv">
 	    <img id="messageImg" src="" style="height:150px; width:200px; border-radius: 50px;">
 	    </br>
 	    <p id="message"></p>
 	    <h6>press Space to continue</h6>
   	</div>
-
+  	<div>
 	<button id = "startBtn" class="gameBtns" display="inline-block" >Start</button>
 	<button id = "continueBtn" class="gameBtns" display="inline-block">Continue</button>
 	<button id = "continueBtn2" class="gameBtns">Continue</button>
@@ -28,6 +32,7 @@
 	<button id = "continueBtn4" class="gameBtns">Continue</button>
 	<button id = "restartBtn" class="gameBtns">Restart</button>
 	<p id = "status" display="inline-block">You should foucs on the first card from the left. Press Start button to start</button>
+		</div>
 <script type="text/javascript" src="cardShuffle.js"></script>
 </body>
 </html>
