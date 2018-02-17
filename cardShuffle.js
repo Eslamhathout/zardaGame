@@ -477,7 +477,7 @@ var success = function(Card){
 				}else{
 					//show badge2();
 					if(score == 160){
-						ShowMessage ("Pics/level2.png", "Good Job! your score is " +score)
+						ShowMessage ("Pics/level2.png", "Good Job! you passed tro level 2 by score" +score)
 						messageDiv.classList.add("messageAnimation")
 
 						document.body.onkeyup = function(e){

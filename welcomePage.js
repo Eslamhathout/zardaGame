@@ -28,87 +28,7 @@ class character{
 	}
 }
 
-class game{
-	constructor(lev,ponus){
-		this.level=lev;
-		this.ponus=ponus;
-		this.counter=0;
-	}
-    startMove (cardA,cardB){
-	timer = 0;
-	var margin = 0;
-	var currentlevel= this.level;
-	if(cardA.div.getBoundingClientRect().right<cardB.div.getBoundingClientRect().right){
-		var tempCard = cardA;
-		cardA = cardB;
-		cardB = tempCard;
-	}
 
-	setTimeout(function(){
-		var interval = setInterval(function(){
-			margin+=currentlevel;
-			cardA.div.style["top"] = margin +"px";
-			cardB.div.style["top"] = -margin +"px";
-
-			if(margin >= 150){
-				clearInterval(interval);
-			}
-		},10);
-	},0);
-	timer+=1500;
-	//=======================================================
-	var marginR =0;
-	var rightDiff = cardA.div.getBoundingClientRect().right-cardB.div.getBoundingClientRect().right;
-		setTimeout(function(){
-			var interval = setInterval(function(){
-				marginR+=currentlevel;
-				cardA.div.style["right"] = marginR+"px";
-				cardB.div.style["right"] =-marginR+"px";
-				if(marginR >= rightDiff){
-					clearInterval(interval);
-				}
-
-			},10)},timer/currentlevel);
-		if(rightDiff <= 240){
-			timer+=2450;
-		}else{
-			timer+=4850;
-
-		}
-	
-//=======================================================	
-	setTimeout(function(){
-		var interval = setInterval(function(){
-			margin-=currentlevel;
-			cardA.div.style["top"] = margin +"px";
-			cardB.div.style["top"] = -margin +"px";
-
-			if(margin <= 0){
-				cardA.div.style["right"] = 0+"px";
-				cardB.div.style["right"] = 0+"px";
-
-				var tempImg = cardA.imgSrc;
-				cardA.imgSrc = cardB.imgSrc;
-				cardB.imgSrc=tempImg;
-				debugger
-				/*HideCards();*/
-				card1.clearDiv();
-				card2.clearDiv();
-				card3.clearDiv();
-				/*showCards();*/
-				card1.createDiv();
-				card2.createDiv();
-				card3.createDiv();
-				clearInterval(interval);
-			}
-		},10);
-	},timer/currentlevel);
-	timer+=1500;
-
-}
-	
-
-}
 
 var charact=null;
 var card1 = null ;
@@ -152,7 +72,7 @@ var characterPageDiv = document.getElementById("characterPage");
 var showCharacterPage = function(){
 characterPageDiv.innerHTML += "<div id = \'mainCharacter\'>\
 		<div align=\"center\">\
-			<input id = \"name\" type=\"text\" placeholder=\"your name\">\
+			<input id = \"name\" type=\"text\" required=\"required\" placeholder=\"your name\">\
 		</div>\
 		<div>\
 			<div class=\"leftCharacter\"> <button class = \"charBtn\"><img id=\"character1\" src=\"Pics/character1.png\"></button></div>\
@@ -166,12 +86,13 @@ character2 = document.getElementById("character2");
 var hideCharacterPage = function(){
 	/*characterPageDiv.style.visibility="hidden";*/
 	var name = document.getElementById("name").value;
-	url= "index.html?" +name+"&"+this.src;
-   window.location.replace(url);
+	var error = document.getElementById("errorDiv");
+	
 	if(name){
-	console.log("hi "+name);
-	charact=new character(name,10,this.src);
-   
+	url= "index.html?" +name+"&"+this.src;
+   window.location.replace(url);	
+}else{
+	error.visibility=visible;
 }
 }
 character1.addEventListener("click", hideCharacterPage);
